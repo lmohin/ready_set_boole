@@ -9,6 +9,17 @@ pub fn adder(a: u32, b: u32) -> u32 {
     sum
 }
 
+pub fn int_adder(a: i32, b: i32) -> i32 {
+    let mut sum = a ^ b;
+    let mut carry = (a & b) << 1;
+    while carry != 0 {
+        let next_sum = sum ^ carry;
+        carry = (sum & carry) << 1;
+        sum = next_sum;
+    }
+    sum
+}
+
 pub fn multiplier(a: u32, b: u32) -> u32 {
     let mut tmp_a = a;
     let mut tmp_b = b;
@@ -23,10 +34,24 @@ pub fn multiplier(a: u32, b: u32) -> u32 {
     result
 }
 
+pub fn int_multiplier(a: i32, b: i32) -> i32 {
+    let mut tmp_a = a;
+    let mut tmp_b = b;
+    let mut result = 0;
+    for _ in 0..32 {
+	if tmp_a & 1 == 1 {
+          result = int_adder(result, tmp_b);
+        }
+        tmp_a = tmp_a >> 1;
+        tmp_b = tmp_b << 1;
+    }
+    result
+}
+
 /**********************************/
 /*           Example              */
 /*                                */
-/* A =   101 (5)                  */
+/* A = 00101 (5)                  */
 /* B = 10110 (22)                 */
 /*                                */
 /* A * B =   1 *      10110       */
