@@ -38,6 +38,6 @@ pub fn adder(a: u32, b: u32) -> u32 {
 /**********************************/
 /*          Complexity            */
 /*                                */
-/* Time complexity: O(n)          */
+/* Time complexity: O(1)          */
 /* Space complexity: O(1)         */
 /**********************************/
