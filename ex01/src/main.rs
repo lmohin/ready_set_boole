@@ -11,14 +11,14 @@ fn main() {
     let a: u32 = match args[1].parse() {
         Ok(n) => n,
         Err(_) => {
-            eprintln!("Error\n'{}' is not a valid integer", args[1]);
+            eprintln!("Error\n'{}' is not a valid positive integer", args[1]);
             std::process::exit(1);
         }
     };
     let b: u32 = match args[2].parse() {
         Ok(n) => n,
         Err(_) => {
-            eprintln!("Error\n'{}' is not a valid integer", args[2]);
+            eprintln!("Error\n'{}' is not a valid positive integer", args[2]);
             std::process::exit(1);
         }
     };
