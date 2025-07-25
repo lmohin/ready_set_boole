@@ -1,3 +1,4 @@
+mod adder;
 mod multiplier;
 use std::env;
 
@@ -22,7 +23,8 @@ fn main() {
         }
     };
     println!("{} * {} = {}", a, b, multiplier::multiplier(a, b));
-    println!("{} * {} = {}", -4, 4, multiplier::int_multiplier(-4, 4));
+    println!("{} * {} = {}", -42, 42, multiplier::int_multiplier(-42, 42));
+    println!("{} * {} = {}", 42, -42, multiplier::int_multiplier(42, -42));
     println!("{} * {} = {}", -42, -42, multiplier::int_multiplier(-42, -42));
     println!("{} * {} = {}", -2147483648, -1, multiplier::int_multiplier(-2147483648, -1));
 }

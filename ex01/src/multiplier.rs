@@ -1,24 +1,4 @@
-pub fn adder(a: u32, b: u32) -> u32 {
-    let mut sum = a ^ b;
-    let mut carry = (a & b) << 1;
-    while carry != 0 {
-        let next_sum = sum ^ carry;
-        carry = (sum & carry) << 1;
-        sum = next_sum;
-    }
-    sum
-}
-
-pub fn int_adder(a: i32, b: i32) -> i32 {
-    let mut sum = a ^ b;
-    let mut carry = (a & b) << 1;
-    while carry != 0 {
-        let next_sum = sum ^ carry;
-        carry = (sum & carry) << 1;
-        sum = next_sum;
-    }
-    sum
-}
+use crate::adder;
 
 pub fn multiplier(a: u32, b: u32) -> u32 {
     let mut tmp_a = a;
@@ -26,7 +6,7 @@ pub fn multiplier(a: u32, b: u32) -> u32 {
     let mut result = 0;
     while tmp_a != 0 {
 	if tmp_a & 1 == 1 {
-	  result = adder(result, tmp_b);
+	  result = adder::adder(result, tmp_b);
         }
         tmp_a = tmp_a >> 1;
         tmp_b = tmp_b << 1;
@@ -40,7 +20,7 @@ pub fn int_multiplier(a: i32, b: i32) -> i32 {
     let mut result = 0;
     for _ in 0..32 {
 	if tmp_a & 1 == 1 {
-          result = int_adder(result, tmp_b);
+          result = adder::int_adder(result, tmp_b);
         }
         tmp_a = tmp_a >> 1;
         tmp_b = tmp_b << 1;
@@ -51,8 +31,8 @@ pub fn int_multiplier(a: i32, b: i32) -> i32 {
 /**********************************/
 /*           Example              */
 /*                                */
-/* A = 00101 (5)                  */
-/* B = 10110 (22)                 */
+/* A = 00000101 (5)               */
+/* B = 00010110 (22)              */
 /*                                */
 /* A * B =   1 *      10110       */
 /*         + 0 *     101100       */
@@ -63,9 +43,9 @@ pub fn int_multiplier(a: i32, b: i32) -> i32 {
 /*                                */
 /**********************************/
 
-/*************************************/
-/*          Complexity               */
-/*                                   */
-/* Time complexity: O(log(a)*log(b)) */
-/* Space complexity: O(1)            */
-/*************************************/
+/**********************************/
+/*          Complexity            */
+/*                                */
+/* Time complexity: O(1)          */
+/* Space complexity: O(1)         */
+/**********************************/
